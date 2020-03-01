@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= title %></title>
+	<title>Adelphi</title>
 
    
 	<!--Bootsrap 4 CDN-->
@@ -18,7 +18,7 @@
 	<!--Custom styles-->
 	<link href="https://fonts.googleapis.com/css?family=Acme|Courgette|Pacifico&display=swap" rel="stylesheet">
 
-	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="stylesheets/login.css">
 
 </head>
 <body>
@@ -29,7 +29,7 @@
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
-				<h3><%= signin %></h3>
+				<h3>Sign in</h3>
 			</div>
 			<div class="card-body">
 			<form action="validation.php" method="post">
@@ -47,18 +47,18 @@
 						</div>
 					</div>
 					<div class="wthree-field">
-						<button type="submit" class="btn"><%= button %></button>
+						<button type="submit" class="btn">Sign in</button>
 					</div>
 					<ul class="list-login">
 						<li class="switch-agileits">
 							<label class="switch">
 								<input type="checkbox">
 								<span class="slider round"></span>
-								<%= keepLoggedIn %>
+								Keep me logged in
 							</label>
 						</li>
 						<li>
-							<a href="#" class="text-right"><%= forgotPasswword %>b  </a>
+							<a href="#" class="text-right">Forgot password  </a>
 						</li>
 						<li class="clearfix"></li>
 					</ul>
@@ -73,7 +73,7 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
     <!-- calling footer file -->
-    <%- iclude('footer.ejs'); -%>
+    <%- include('footer.ejs'); -%>
 
 
 </body>
