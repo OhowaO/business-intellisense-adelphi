@@ -31,7 +31,7 @@ if(!isProduction) {
 }
 
 //Configure Mongoose
-mongoose.connect('mongodb://localhost/passport-tutorial');
+mongoose.connect('mongodb+srv://adelphi-team:adelphi@adelphi-fkstv.gcp.mongodb.net/test?retryWrites=true&w=majority');
 mongoose.set('debug', true);
 
 // view engine setup
