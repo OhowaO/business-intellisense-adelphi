@@ -342,3 +342,18 @@ li {
     display: list-item;
     text-align: -webkit-match-parent;
 }
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: transparent;
+   color: white;
+   text-align: center;
+}
+ul#terms li {
+  display:inline;
+  color: white;
+  padding-left:2%;
+}
