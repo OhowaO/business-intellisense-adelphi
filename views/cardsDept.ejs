@@ -1,0 +1,242 @@
+<div class="cards-list">
+  
+				<div class="card 1">
+					<div class="card_image">
+						<!--<img src="https://i.redd.it/b3esnz5ra34y.jpg" /> -->
+					</div>
+					<div class="card_title">
+						<p><%= employees%></p>
+					</div>
+				</div>
+
+				<div class="card 2">
+					<div class="card_image">
+						<!--<img src="https://i.redd.it/b3esnz5ra34y.jpg" /> 
+						<canvas id="myChart3" style="display: block; max-height: 90%;"></canvas>-->
+					</div>
+					<div class="card_title ">
+						<p><%= tenure %></p>
+					</div>
+				</div>
+
+				<div class="card 3">
+					<div class="card_image">
+						<!--<img src="https://i.redd.it/b3esnz5ra34y.jpg" /> -->
+					</div>
+					<div class="card_title ">
+						<p><%= attirance%></p>
+					</div>
+				</div>
+
+				<div class="card 4">
+					<div class="card_image">
+						<!--<img src="https://i.redd.it/b3esnz5ra34y.jpg" /> 
+						<canvas id="myChart" style="display: block; max-height: 90%;"></canvas>-->
+					</div>
+					<div  class="card_title">
+						<p><%= revenue%></p>
+					</div>
+				</div>	
+				
+				<div class="card 5">
+					<div class="card_image">
+						<!--<img src="https://i.redd.it/b3esnz5ra34y.jpg" /> 
+						<canvas id="myChart2" style="display: block; max-height: 90%; height:90%;"></canvas>-->
+					</div>
+					<div class="card_title ">
+						<p><%= costDepartment %></p>
+					</div>
+				</div>
+
+
+			</div>
+			
+			<script>
+    let myChart = document.getElementById('myChart').getContext('2d');
+
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 12;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let massPopChart = new Chart(myChart, {
+      type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Sales','Marketing', 'PS', 'Accounts', 'HR'],
+        datasets:[{
+          label:'Population',
+          data:[
+            617594,
+            181045,
+            153060,
+            106519,
+            105162
+          ],
+
+          //backgroundColor:'green',
+          backgroundColor:[
+            '#8B2AFF',
+            '#03C400',
+            '#FF7100',
+            '#FF0400',
+            '#0062FF'
+          ],
+          borderWidth:0.3,
+          borderColor:'#FFF',
+          hoverBorderWidth:3,
+          hoverBorderColor:'#Fff'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'£1.163.380',
+          fontSize:25
+        },
+        legend:{
+          display:true,
+          position:'bottom',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:5,
+            right:5,
+            bottom:5,
+            top:5
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+  </script>
+    <script>
+    let myChart2 = document.getElementById('myChart2').getContext('2d');
+
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 12;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let massPopChart2 = new Chart(myChart2, {
+      type:'horizontalBar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Sales','Marketing', 'PS', 'Accounts', 'HR'],
+        datasets:[{
+          label:'Costs',
+          data:[
+            117594,
+            181045,
+            153060,
+            106519,
+            105162
+          ],
+
+          //backgroundColor:'green',
+          backgroundColor:[
+            '#8B2AFF',
+            '#03C400',
+            '#FF7100',
+            '#FF0400',
+            '#0062FF'
+          ],
+          borderWidth:0.3,
+          borderColor:'#FFF',
+          hoverBorderWidth:3,
+          hoverBorderColor:'#Fff'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'£1.163.380',
+          fontSize:25
+        },
+        legend:{
+          display:false,
+          position:'bottom',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:5,
+            right:5,
+            bottom:5,
+            top:5
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+  </script>
+  <script>
+    let myChart3 = document.getElementById('myChart3').getContext('2d');
+
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 12;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let massPopChart3 = new Chart(myChart3, {
+      type:'polarArea', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Sales','Marketing', 'PS', 'Accounts', 'HR'],
+        datasets:[{
+          label:'Population',
+          data:[
+            217594,
+            181045,
+            153060,
+            106519,
+            105162
+          ],
+
+          //backgroundColor:'green',
+          backgroundColor:[
+            '#8B2AFF',
+            '#03C400',
+            '#FF7100',
+            '#FF0400',
+            '#0062FF'
+          ],
+          borderWidth:0.3,
+          borderColor:'#FFF',
+          hoverBorderWidth:3,
+          hoverBorderColor:'#Fff'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'£1.163.380',
+          fontSize:25
+        },
+        legend:{
+          display:true,
+          position:'bottom',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:5,
+            right:5,
+            bottom:5,
+            top:5
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+  </script>
