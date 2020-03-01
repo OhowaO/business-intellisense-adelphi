@@ -82,7 +82,4 @@ router.get('/current', auth.required, (req, res, next) => {
 	});
 });
 
-router.get('/page', auth.optional, (req, res, next) => {
-    return res.send('hello');
-});
 module.exports = router;
