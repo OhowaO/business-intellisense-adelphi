@@ -84,6 +84,7 @@ router.get('/current', auth.required, (req, res, next) => {
 	    }
 
 	    return res.json({ user: user.toAuthJSON() });
+	});
 });
 
 
