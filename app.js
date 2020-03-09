@@ -31,7 +31,10 @@ if(!isProduction) {
 }
 
 //Configure Mongoose
-mongoose.connect('mongodb+srv://adelphi-team:adelphi@adelphi-fkstv.gcp.mongodb.net/test?retryWrites=true&w=majority');
+//local
+mongoose.connect('mongodb://localhost/passport-tutorial');
+//cloud
+//mongoose.connect('mongodb+srv://adelphi-team:adelphi@adelphi-fkstv.gcp.mongodb.net/test?retryWrites=true&w=majority');
 mongoose.set('debug', true);
 
 // view engine setup
@@ -46,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Models
 require('./models/Users');
+require('./models/OneTimePass');
 require('./config/passport'); //keep this below all models
 
 //Routers

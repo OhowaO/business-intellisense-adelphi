@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const router = require('express').Router();
 const auth = require('./auth');
+
 const Users = mongoose.model('Users');
+const OneTimePass = mongoose.model('OneTimePass');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,9 +32,8 @@ router.post('/create', auth.optional, (req, res, next) => {
     }
 
     const finalUser = new Users(user);
-
     finalUser.setPassword(user.password);
-
+    
     return finalUser.save()
 	.then(() => res.json({ user: finalUser.toAuthJSON() }));
 });
@@ -40,7 +41,7 @@ router.post('/create', auth.optional, (req, res, next) => {
 //POST login route (optional, everyone has access)
 router.post('/', auth.optional, (req, res, next) => {
     const { body: { user } } = req;
-
+    
     if(!user.email) {
 	return res.status(422).json({
 	    errors: {
@@ -66,6 +67,12 @@ router.post('/', auth.optional, (req, res, next) => {
 	    const user = passportUser;
 	    user.token = passportUser.generateJWT();
 
+	    OneTimePass.deleteMany({email: user.email}, function (err) {});
+	    
+	    const oneTime = new OneTimePass({email: user.email}); //user also contains __v
+	    oneTime.setOTP();
+	    oneTime.save();
+	    
 	    return res.json({ user: user.toAuthJSON() });
 	}
 
@@ -87,5 +94,31 @@ router.get('/current', auth.required, (req, res, next) => {
 	});
 });
 
+//GET route for 2FA login page
+router.get('/deux', auth.required, (req, res, next) => {
+    // some login page here
+});
+
+//POST route to authenticate 2FA user
+router.post('/deux', auth.required, (req, res, next) => {
+    const { payload: { email }, body: { code } } = req;
+    var matchFound = false;
+    
+    OneTimePass.find({"email": email, "used": false}, function (err, passes) {
+	if (err) {
+	    //TODO: something
+	}
+	for (const pass of passes) {
+	    const matched = pass.match(code);
+	    pass.save()
+	    if (matched) {
+		matchFound = match;
+	    }
+	};
+    }).then(() => {
+	//TODO: something better than this
+	return matchFound ? res.sendStatus(200) : res.sendStatus(201);
+    });
+});
 
 module.exports = router;
