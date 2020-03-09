@@ -10,6 +10,11 @@ const getTokenFromHeaders = (req) => {
 };
 
 const auth = {
+    complete: jwt({
+	secret: 'twice_approved',
+	userProperty: 'payload',
+	getToken: getTokenFromHeaders,
+    }),	
     required: jwt({
 	secret: 'secret',
 	userProperty: 'payload',

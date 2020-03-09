@@ -103,22 +103,22 @@ router.get('/deux', auth.required, (req, res, next) => {
 router.post('/deux', auth.required, (req, res, next) => {
     const { payload: { email }, body: { code } } = req;
     var matchFound = false;
-    
-    OneTimePass.find({"email": email, "used": false}, function (err, passes) {
-	if (err) {
-	    //TODO: something
-	}
+
+    OneTimePass.find({"email": email, "used": false}).then((passes) => {
 	for (const pass of passes) {
 	    const matched = pass.match(code);
-	    pass.save()
+	    pass.save();
+
 	    if (matched) {
-		matchFound = match;
+		return res.json({ user: pass.toAuthJSON()});
 	    }
-	};
-    }).then(() => {
-	//TODO: something better than this
-	return matchFound ? res.sendStatus(200) : res.sendStatus(201);
+	}
+	return res.send("uh oh wrong code bud");
     });
+});
+
+router.get('/junk', auth.complete, (req, res, next) => {
+    return res.send("woohoo");
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const { Schema } = mongoose;
 
@@ -45,5 +46,25 @@ OneTimePassSchema.methods.match = function (OTP) {
 
     return match;
 }
+
+OneTimePassSchema.methods.generateJWT = function() {
+  const today = new Date();
+  const expirationDate = new Date(today);
+  expirationDate.setDate(today.getDate() + 1);
+
+  return jwt.sign({
+    email: this.email,
+    id: this._id,
+    exp: parseInt(expirationDate.getTime() / 1000, 10),
+  }, 'twice_approved');
+}
+
+OneTimePassSchema.methods.toAuthJSON = function() {
+  return {
+    _id: this._id,
+    email: this.email,
+    token: this.generateJWT(),
+  };
+};
 
 mongoose.model('OneTimePass', OneTimePassSchema);
